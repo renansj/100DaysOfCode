@@ -50,3 +50,38 @@
 (cons "Lisp" languages) ; returns ("Lisp" "Haskell" "Clojure" "Elixir" "Coq")
 
 
+
+
+
+
+
+
+
+;;There's another type of collection like vector, the list...
+;;The list is an ordered collection of items, you can make a list like this:
+
+'(1 2 3)
+
+;;We need the quote in the beginning cause a very prosaic reason, with their round parentheses it looks like Clojure
+;;Code, then syntactically it's hard to see the difference between (1 2 3) and (def x 1)
+
+;;Like vectors list can hold whatever data care to throw at them, so the following are perfectly good lists:
+
+'(1 2 3 "four" 5 "six")
+'(1 2.0 2.9999 "four" 5.001 "six")
+'([1 2 ("a list" "inside" "a vector")] "inside" "a" "list")
+
+;;And we also have a function that create a list from the arguments you pass in:
+
+(list 1 2 3 "four" 5 "six")
+
+;;And you can do many of the things that you can do with a vector, like count, first, rest and nth:
+
+(def languages '("Imperative language :(" "Functional language yay"))
+
+(count languages) ; returns 3
+(first language) ; returns "Imperative language :("
+(rest language) ; returns "Functional language yay"
+(nth language 1) ; returns "Functional language yay"
+
+
