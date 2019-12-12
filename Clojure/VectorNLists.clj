@@ -84,4 +84,45 @@
 (rest language) ; returns "Functional language yay"
 (nth language 1) ; returns "Functional language yay"
 
+;;Vetors and lists are both ordered, sequential data structures...
+;;We have both because internally they're very different.
+;;A vector is similar to an array, a big chunk of continuous memory, the first item in the first slot and so on...
+;;Vector: https://www.oreilly.com/library/view/getting-clojure/9781680506082/images/vector.png
 
+;;Btw, lists are implemented as linked lists, you can think of a list as series of two-slot objects.
+;;List: https://www.oreilly.com/library/view/getting-clojure/9781680506082/images/list.png
+;;One slot contains a reference to some data item while the second slot points at the next object in the list.
+
+;;So, don't forget about immutability, when you create a vector like this:
+
+(def languages ["Scala" "Haskell" "Clojure"])
+
+;;Then you try to add an element to it like this:
+
+(conj languages "Agda")
+
+;;It would be returned a new vector, in the case above, it will return to anyone.
+;;Let's do something useful with it;
+
+(def more-languages (conj languages "Agda"))
+
+;;more-languages will be a new vector with four elements, "Scala" "Haskell" "Clojure" "Agda"
+;;The same logic applies to most other data structures in Clojure, like lists:
+
+(def languages-again '("Scala" "Elixir" "Erlang"))
+
+(conj languages-again "Lisp")
+
+;;OMG, but what if a have a huge vector and need to add a series of values to it? It will create a new one?
+;;What about performance?
+
+;;vectors store their data in chunks and organize them in a shallow tree, breaking the data up into chunks means
+;;that when we need to make an almost same copy, Clojure can minimize the amount of copying by reusing most of the
+;;chunk as is.
+;;Accessing an element of a vector involves traversing the tree, is not quite fast as getting an element of a simple
+;;array, but it's still fast.
+;;AAAAAAAAAAAAND, all of Clojure's data structures are carefully designed to support fast creation of similar ones.
+
+;;hint: lists are better when you need to append new items to the front
+
+;;Cya
