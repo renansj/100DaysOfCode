@@ -101,7 +101,7 @@
 
 (conj languages "Agda")
 
-;;It would be returned a new vector, in the case above, it will return to anyone.
+;;It would be returned a new vector, in the case above, it will return to no one.
 ;;Let's do something useful with it;
 
 (def more-languages (conj languages "Agda"))
